@@ -11,11 +11,7 @@ public class Orderitem
     {
     }
 
-    public Orderitem(int quantity, double price)
-    {
-        Quantity = quantity;
-        Price = price;
-    }
+   
 
     public Orderitem(int quantity, double price, Product product)
     {
@@ -32,7 +28,7 @@ public class Orderitem
     {
         if (Product != null)
         {
-            return $"{Product.Name}, ${Price}, {Quantity}, Subtotal: ${SubTotal()}";
+            return $"{Product.Name}, ${Price}, Quantity:{Quantity}, Subtotal: ${SubTotal()}";
         }
         else
         {

@@ -1,5 +1,7 @@
-﻿using OrderEx.Entities;
+﻿using System.Globalization;
+using OrderEx.Entities;
 using OrderEx.Entities.Enum;
+using DateTime = System.DateTime;
 
 namespace OrderEx;
 
@@ -15,25 +17,29 @@ class Program
         Console.Write("Birth date (DD/MM/YYYY): ");
         DateTime clientBirth = DateTime.Parse(Console.ReadLine());
         Console.WriteLine("Enter order data: ");
-        Console.WriteLine("Status:");
+        Console.Write("Status:");
         OrderStatus orderStatus = Enum.Parse<OrderStatus>(Console.ReadLine());
 
         Client client = new Client(clientName, clientEmail,clientBirth );
         Order order = new Order(DateTime.Now, orderStatus, client);
-        Console.WriteLine("How many itens to this order?");
+        Console.Write("How many itens to this order?");
         int orderNumber = int.Parse(Console.ReadLine());
 
         for (int i = 1; i <= orderNumber; i++)
         {
             Console.WriteLine($"Enter {i}# item data: ");
-            Console.WriteLine("Product name:");
+            Console.Write("Product name:");
             string productName = Console.ReadLine();
-            Console.WriteLine("Product price: ");
-            double productPrice = double.Parse(Console.ReadLine());
-            Console.WriteLine("Quantity: ");
-            int productQuantity = int.Parse(Console.ReadLine());
-            Orderitem orderItem = new Orderitem(productQuantity,productPrice);
+            Console.Write("Product price: ");
+            double productPrice = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+           
+            Product product = new Product(productName, productPrice);
             
+            Console.Write("Quantity: ");
+            int productQuantity = int.Parse(Console.ReadLine());
+           
+
+            Orderitem orderItem = new Orderitem(productQuantity, productPrice, product);
 
             order.AddItem(orderItem);
         }
