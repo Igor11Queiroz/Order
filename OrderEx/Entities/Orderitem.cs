@@ -11,6 +11,12 @@ public class Orderitem
     {
     }
 
+    public Orderitem(int quantity, double price)
+    {
+        Quantity = quantity;
+        Price = price;
+    }
+
     public Orderitem(int quantity, double price, Product product)
     {
         Quantity = quantity;
@@ -22,4 +28,17 @@ public class Orderitem
     {
         return Quantity * Price;
     }
+    public override string ToString()
+    {
+        if (Product != null)
+        {
+            return $"{Product.Name}, ${Price}, {Quantity}, Subtotal: ${SubTotal()}";
+        }
+        else
+        {
+            return "Product not set";
+        }
+    }
+
+  
 }

@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace OrderEx.Entities;
 
 public class Client
@@ -17,5 +19,12 @@ public class Client
         BirthDate = birthDate;
     }
     
-    
+    public override string ToString()
+    {
+        return Name 
+               + ", (" 
+               + BirthDate.ToString("dd/MM/yy")
+               + ") - " 
+               + Email;
+    }
 }

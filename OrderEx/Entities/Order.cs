@@ -1,3 +1,4 @@
+using System.Text;
 using OrderEx.Entities.Enum;
 
 namespace OrderEx.Entities;
@@ -36,6 +37,20 @@ public class Order
             sum += item.SubTotal();
         }
         return sum;
+    }
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("Order moment: " + Moment.ToString("MM/dd/yyyy HH:mm:ss"));
+        sb.AppendLine("Order status: " + Status);
+        sb.AppendLine("Client: " + Client);
+        sb.AppendLine("Order items:");
+        foreach (Orderitem item in OrderItems)
+        {
+            sb.AppendLine(item.ToString());
+        }
+        sb.AppendLine("Total price: $" + Total());
+        return sb.ToString();
     }
 }
 
